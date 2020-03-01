@@ -45,17 +45,112 @@
 
 <div class="container">
     <div class="row">
-    <div class="col-12">
-        <p>The dataset contains data about a number of locations across the US</p>
-    </div>
+        <div class="col-12">
+            <form>
+                <div class="form-row">
+                    <div class="col-12">
+                        <h3 class="mb-5">The property details</h3>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="lat">Title for Airbnb</label>
+                        <input type="text" class="form-control" id="title">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-12 mt-3">
+                        <h5>Position (only NY)</h5>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="lat">Latitude</label>
+                        <input type="text" class="form-control" id="lat">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="long">Longitude</label>
+                        <input type="text" class="form-control" id="long">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12">
+                        <h5 class="mt-3 mb-2">Amenities</h5>
+                    </div>
+                </div>
+                <div class="form-row">
+                    {% for amenity in amenities %}
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="{{ amenity }}"
+                                       value="{{ amenity }}">
+                                <label class="form-check-label" for="{{ amenity }}">{{ amenity }}</label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="form-row mt-5">
+                    <div class="form-group col-md-4">
+                        <label for="bathrooms">Bathrooms</label>
+                        <input type="number" class="form-control" id="bathrooms">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="bedrooms">Bedrooms</label>
+                        <input type="number" class="form-control" id="bedrooms">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="beds">Beds</label>
+                        <input type="number" class="form-control" id="beds">
+                    </div>
+
+                </div>
+
+                <div class="form-row mt-3">
+                    <div class="form-group col-md-4">
+                        <label for="property_types">Property types</label>
+                            <select class="form-control" id="property_types">
+                                {% for property_type in property_types %}
+                                    <option>{{property_type}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cancellation_policy">Cancellation policy</label>
+                            <select class="form-control" id="cancellation_policy">
+                                {% for cancellation_policy_type in cancellation_policy_types %}
+                                    <option>{{ ' '.join(cancellation_policy_type.split('_')).title()}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="bed_types">Bed types</label>
+                            <select class="form-control" id="bed_types">
+                                {% for bed_type in bed_types %}
+                                    <option>{{bed_type}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                </div>
+
+                <div class="form-row mt-3">
+                    <div class="form-group col-md-12 form-inline">
+                        <label class='mr-3' for="discount">Discount for weekly purchase:</label>
+                        <input type="number" class="form-control mr-3" id="discount"> %
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        </div>
     </div>
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
             <div class="col-12">
-                See https://getbootstrap.com/docs/4.4/examples/checkout/ for an example
+                The team name
             </div>
         </div>
     </footer>
 </div>
 </body>
-</html>
+</html>r
