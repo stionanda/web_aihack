@@ -3,24 +3,35 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-map.setView(new L.LatLng(40.7128, -74.0060), 11);
-
-
-L.marker().addTo(map);
+map.setView(new L.LatLng(40.7328, -73.9560), 10);
 
 async function asyncCall() {
-	let serialized = await fetch('/static/output.json')
+	let serialized = await fetch('/static/data_test.geojson')
 
 	data = await serialized.json()
-
-	//for (i = 0; i < data.length; i++) {
-  	//	name = String(i)
-  	//	L.marker(data[name]).addTo(map);
-	//}
-	L.marker([50.5, 30.5]).addTo(map);
+	function displayMapLatLng (data) {
+	for (i = 0; i < data['features'].length; i++) {
+    	
+	//var color = 'red';
+	price = data['features'][i]["properties"]["prop"]
+	if (price <= 150) {
+ 		color = 'green';
+	} else if (price <= 300){
+		color = 'blue';	
+	} else {
+		color = 'red'
+	}
+    	var circle = new L.circle((data['features'][i]['geometry']["coordinates"]), 25, {color: color, opacity:1})
+    circle.addTo(map);
+}
+	
+  		
+	}
+displayMapLatLng(data)
 }
 
 asyncCall();
+
 
 
 
